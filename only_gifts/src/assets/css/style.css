@@ -1,0 +1,197 @@
+/* Import Google font - Poppins */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'); */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+/* body {
+  display: flex;
+  padding: 0 35px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to left top, #031A9A, #8B53FF);
+} */
+
+/* Add this CSS to your stylesheet */
+/* .navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;  */
+  /* Adjust the z-index as needed */
+  /* background-color: #fff !important;  */
+  /* Set the background color of your header */
+/* } */
+
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+}
+.wrapper i {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+  color: #1673be;
+}
+.wrapper i:active{
+  transform: translateY(-50%) scale(0.85);
+}
+.wrapper i:first-child{
+  left: -22px;
+}
+.wrapper i:last-child{
+  right: -22px;
+}
+.wrapper .carousel{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 4) - 16px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel.no-transition {
+  scroll-behavior: auto;
+}
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+.carousel :where(.card, .img) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel .card {
+  scroll-snap-align: start;
+  height: 342px;
+  list-style: none;
+  background: #fff;
+  cursor: pointer;
+  padding-bottom: 15px;
+  flex-direction: column;
+  border-radius: 8px;
+}
+.carousel .card .img {
+  background: #8B53FF;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+}
+/* .card .img img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+} */
+.carousel .card h2 {
+  font-weight: 500;
+  font-size: 1.56rem;
+  margin: 30px 0 5px;
+}
+.carousel .card span {
+  color: #6A6D78;
+  font-size: 1.31rem;
+}
+
+.category-img {
+width: 200px;
+height: 200px;
+border-radius: 50%;
+object-fit: cover;
+border: 6px solid #1673be;
+box-shadow: 0px 0px 20px rgb(22, 115, 190);
+}
+.main {
+color : #1673be;
+}
+.blur {
+color : #3698E7;
+}
+
+.second_fold__h1 {
+  font-weight: bold !important;
+  color: #1673be;
+}
+
+.end_ruler {
+  border: none; /* Remove the default border */
+  opacity: 100% !important;
+  border-top: 1rem solid #000000 !important; /* Add a new, thicker border with the desired color */
+}
+
+.title_ruler {
+  border: none; /* Remove the default border */
+  opacity: 100% !important;
+  border-top: 0.4rem solid #1673be !important; /* Add a new, thicker border with the desired color */
+}
+.card_heading {
+  font-weight:  bold;
+  color: #1673be;
+  text-align: center;
+}
+
+.b {
+  font-weight: bold !important;
+}
+.third_fold_h4  {
+  color:   #3698E7;
+}
+
+.fourth_fold {
+  background-color: #1673be;
+}
+
+.c-fff {
+  color: #ffffff;
+}
+
+.fixed-image-size {
+  width: 100%; /* Set the width to 100% to make sure the image fills the card width */
+  height: 400px; /* Adjust the height to your desired fixed size */
+  object-fit: cover; /* Maintain the aspect ratio and cover the entire space */
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper .carousel {
+    grid-auto-columns: 100%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .wrapper {
+    max-width: 320px !important
+  }
+}
