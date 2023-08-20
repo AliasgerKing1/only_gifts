@@ -1,4 +1,5 @@
 /* eslint-disable */
+// m.ario.sg.la.de@gmail.com
 import React, { useEffect, useState } from 'react'
 import {NavLink} from 'react-router-dom'
 import {getCategory, getCompany, getProductByLimit } from '../../../Services/AdminService'
