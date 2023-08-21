@@ -3,8 +3,9 @@ import React, {useEffect, useState} from 'react'
 import '../../../../assets/signin/css/style.css'
 import {NavLink, useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux'
-import {addCategory, getCategory} from '../../../../Services/AdminService'
+import {addCategory, deleteCategory, getCategory} from '../../../../Services/AdminService'
 import Header from '../../../Shared/Admin/Header'
+import { getCategoryRed, getCompanyRed, getProductByRed } from '../../../../Redux/AdminNavReducer'
 
 const AddProducts = () => {
     const dispatch = useDispatch()
@@ -26,6 +27,9 @@ const AddProducts = () => {
     
     useEffect(()=> {
         getProductFun()
+        dispatch(getCategoryRed(true))
+        dispatch(getCompanyRed(false))
+        dispatch(getProductByRed(false))
     }, [])
 
     let handleClick = async () => {
@@ -36,6 +40,14 @@ const AddProducts = () => {
         let result = await addCategory(formData)
         let data = result.data.obj
         setImageArray([...imageArray, data])
+    }
+
+    let deleteCategoryFun = async (id) => {
+      let result = await deleteCategory(id)
+      if(result.data.status === 200) {
+      //  Filter out the deleted product from imageArray based on its _id
+      setImageArray((prevImageArray) => prevImageArray.filter((product) => product._id !== result.data.deleted._id));
+      }
     }
   return (
     <>
@@ -66,9 +78,17 @@ const AddProducts = () => {
 <div className='row mb-5 me-5 ms-5 mt-5'>
     {imageArray.map((files, index) => (
         <div className='col-md-4' key={index}>
-    <img src={files.image} alt={files.category} style={{ width: '100%',
+          <div class="card">
+          <img src={files.image} alt={files.category} style={{ width: '100%',
   height: '300px', 
   objectFit: 'cover'}}/>
+  <div class="card-body">
+    <h5 class="card-title">{files.category}</h5>
+    <a class="btn btn-danger me-2 pointer" onClick={()=>deleteCategoryFun(files._id)}>Delete</a>
+    <NavLink to={`/auth/admin/category/update/${files._id}`} className="btn btn-primary">Edit</NavLink>
+
+  </div>
+</div>
 </div>
     ))}
 </div>

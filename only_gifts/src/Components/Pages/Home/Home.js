@@ -6,24 +6,26 @@ import {getCategory, getCompany, getProductByLimit } from '../../../Services/Adm
 
 import {getProductRed} from '../../../Redux/ProductReducer' 
 import { useDispatch, useSelector } from 'react-redux'
+import Header from '../../Shared/Header'
 const Home = () => {
   let dispatch = useDispatch()
 let [company, setCompany] = useState()
 let [category, setCategory] = useState()
   let state = useSelector(state => state.ProductReducer)
-  let getCompanyFun = async () => {
-    let result = await getCompany()
-    setCompany(result.data)
-     
-  }
   let getCategoryFun = async () => {
     let result = await getCategory()
+    if(result.data.length >= 0) {
     setCategory(result.data)
-     
+    }
   }
   let getProductFun = async () => {
     let result = await getProductByLimit()
      dispatch(getProductRed(result.data))
+  }
+  let getCompanyFun = async () => {
+    let result = await getCompany()
+    setCompany(result.data)
+     
   }
   useEffect(()=> {
     if(state.length === 0) {
@@ -33,34 +35,41 @@ let [category, setCategory] = useState()
     getCompanyFun()
     getCategoryFun()
   }, [])
+
+  useEffect(() => {
+    const carousel = document.getElementById("customCarousel");
+    const carouselItems = document.querySelectorAll(".carousel-item");
+    const itemsPerSlide = 4; // Set the number of items to display per slide
+
+    // Function to reset the Carousel to the first item
+    const resetCarousel = () => {
+      carouselItems.forEach((item, index) => {
+        item.classList.remove("active");
+        if (index < itemsPerSlide) {
+          item.classList.add("active");
+        }
+      });
+    };
+
+    // Listen for the Bootstrap Carousel slid event
+    carousel.addEventListener("slid.bs.carousel", () => {
+      const activeItems = document.querySelectorAll(".carousel-item.active");
+      if (activeItems.length < itemsPerSlide) {
+        resetCarousel();
+      }
+    });
+
+    return () => {
+      // Clean up event listeners when the component unmounts
+      carousel.removeEventListener("slid.bs.carousel", resetCarousel);
+    };
+  }, []);
+
   return (
     <>
  <div>
   <section className="first_fold mb-5" id="first">
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/"><img src="/assets/images/logo.png" alt="Bootstrap" width={120} height={96} /></NavLink>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active main" aria-current="page" href="#first"><b className="main">Home</b></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#second"><b className="blur">Our Product</b></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#third"><b className="blur">Our Clients</b></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#fourth"><b className="blur">About us</b></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+<Header />
     <div className="second-nav mb-5">
       <div className="row">
         <div className="col-md-6 md-ms-md-5">
@@ -71,10 +80,72 @@ let [category, setCategory] = useState()
         </div>
       </div>
     </div>
-    <div className="row">
-      <div className="col-md-12">
 
-        <div className="wrapper2 ms-5">
+    <div className="row" style={{display : 'none'}}>
+  <div className="col-md-12">
+    <div
+      id="customCarousel"
+      className="carousel slide"
+      data-bs-ride="carousel"
+      data-bs-interval="3000" // Set the interval in milliseconds (e.g., 3000ms = 3 seconds)
+    >
+      <div className="carousel-inner ms-md-6 ms-5-5">
+        {category?.map((cat, index) => (
+          <div
+            className={`carousel-item ${index === 0 ? "active" : ""}`}
+            key={index}
+          >
+            <div className="d-flex flex-wrap"> {/* Use flex-wrap to allow items to wrap */}
+              {category.slice(index, index + 4).map((cat, subIndex) => (
+                <div key={subIndex} className="carousel-image me-5 me-md-0 col-12 col-md-6 col-lg-3"> {/* Adjust the column classes */}
+                  <img
+                    src={cat.image}
+                    className="d-block category-img"
+                    alt={cat.category}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+<div className="row  mt-5 mb-7">
+        <div className="col-md-12">
+          <div
+            id="companyCarousel"
+            className="carousel slide"
+            data-bs-ride="carousel"
+            data-bs-interval="3000"
+          >
+            <div className="carousel-inner ms-md-53 ms-55">
+              {category?.map((comp, index) => (
+                <div
+                  className={`carousel-item ${index === 0 ? "active" : ""}`}
+                  key={index}
+                >
+                  <div className="d-flex">
+                    {category.slice(index, index + 4).map((comp, subIndex) => (
+                      <div key={subIndex} className="carousel-image me-5 me-md-0 col-12 col-md-6 col-lg-3">
+                        <img
+                          src={comp.image}
+                          className="d-block category-img"
+                          alt={comp.category}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        {/* <div className="wrapper2 ms-5">
           <i id="left" className="fa-solid fa-angle-left" />
           <ul className="carousel">
             {category?.map((cat, index) => (
@@ -85,11 +156,9 @@ let [category, setCategory] = useState()
             ))}
           </ul>
           <i id="right" className="fa-solid fa-angle-right" />
-        </div>
-      </div>
-    </div>
+        </div> */}
   </section>
-  <hr className="end_ruler" />
+  {/* <hr className="end_ruler" /> */}
   <section className="second_fold" id="second">
     <div className="row mb-4">
       <div className="col-md-4 offset-md-4">
@@ -116,11 +185,11 @@ let [category, setCategory] = useState()
       </div>
     </div>
   </section>
-  <hr className="end_ruler" />
+  {/* <hr className="end_ruler" /> */}
   <section className="third_fold" id="third">
     <div className="row">
       <div className="col-md-4 offset-md-4">
-        <h1 className="second_fold__h1 display-5 ps-7">Our Clients</h1>
+        <h1 className="second_fold__h1 display-5 ps-7 mt-3">Our Clients</h1>
         <hr className="title_ruler" />
       </div>
     </div>
@@ -130,9 +199,39 @@ let [category, setCategory] = useState()
           company. We are proud to be associated with a few brands, and growing….</h4>
       </div>
     </div>
-    <div className="row mt-5 mb-7">
-      <div className="col-md-12">
-        <div className="wrapper2 ms-5">
+   {/* New Company Carousel */}
+   <div className="row  mt-5 mb-7">
+        <div className="col-md-12">
+          <div
+            id="companyCarousel"
+            className="carousel slide"
+            data-bs-ride="carousel"
+            data-bs-interval="3000"
+          >
+            <div className="carousel-inner ms-md-53 ms-55">
+              {company?.map((comp, index) => (
+                <div
+                  className={`carousel-item ${index === 0 ? "active" : ""}`}
+                  key={index}
+                >
+                  <div className="d-flex">
+                    {company.slice(index, index + 4).map((comp, subIndex) => (
+                      <div key={subIndex} className="carousel-image me-2 me-md-0 col-12 col-md-6 col-lg-3">
+                        <img
+                          src={comp.image}
+                          className="d-block category-img"
+                          alt={comp.company}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+        {/* <div className="wrapper2 ms-5">
           <i id="left" className="fa-solid fa-angle-left" />
           <ul className="carousel">
             {company?.map((comp,index) => (
@@ -143,11 +242,8 @@ let [category, setCategory] = useState()
             ))}
           </ul>
           <i id="right" className="fa-solid fa-angle-right" />
-        </div>
-      </div>
-    </div>
-    <hr className="end_ruler 
-m-0" />
+        </div> */}
+    {/* <hr className="end_ruler m-0" /> */}
   </section>
   <section className="fourth_fold pb-7" id="fourth">
     <div className="row ms-3">

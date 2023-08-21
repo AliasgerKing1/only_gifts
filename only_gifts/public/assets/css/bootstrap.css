@@ -8114,6 +8114,15 @@ textarea.form-control-lg {
 .ms-5 {
   margin-left: 3rem !important;
 }
+.ms-53 {
+  margin-left: 4rem !important;
+}
+.ms-55 {
+  margin-left: 6rem !important;
+}
+.ms-6 {
+  margin-left: 12rem !important;
+}
 
 .ms-auto {
   margin-left: auto !important;

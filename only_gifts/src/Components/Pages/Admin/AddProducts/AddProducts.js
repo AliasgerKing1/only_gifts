@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React, {useEffect, useState} from 'react'
 import '../../../../assets/signin/css/style.css'
-import { useNavigate} from "react-router-dom"
+import { NavLink, useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import Header from '../../../Shared/Admin/Header'
-
-import {addProduct, getProduct} from '../../../../Services/AdminService'
+import { getCategoryRed, getCompanyRed, getProductByRed } from '../../../../Redux/AdminNavReducer'
+import {addProduct, getProduct,deleteProduct} from '../../../../Services/AdminService'
 
 const AddProducts = () => {
     const dispatch = useDispatch()
@@ -27,6 +27,9 @@ const AddProducts = () => {
     
     useEffect(()=> {
         getProductFun()
+        dispatch(getCategoryRed(false))
+        dispatch(getCompanyRed(false))
+        dispatch(getProductByRed(true))
     }, [])
     let handleClick = async () => {
         event.preventDefault(); // Prevent the form from submitting and refreshing the page
@@ -36,6 +39,14 @@ const AddProducts = () => {
         let result = await addProduct(formData)
         let data = result.data.obj
         setImageArray([...imageArray, data])
+    }
+
+    let deleteProductFun = async (id) => {
+      let result = await deleteProduct(id)
+      if(result.data.status === 200) {
+      //  Filter out the deleted product from imageArray based on its _id
+      setImageArray((prevImageArray) => prevImageArray.filter((product) => product._id !== result.data.deleted._id));
+      }
     }
   return (
     <>
@@ -67,9 +78,16 @@ const AddProducts = () => {
 <div className='row mb-5 me-5 ms-5 mt-5'>
     {imageArray.map((files, index) => (
         <div className='col-md-4' key={index}>
-    <img src={files.image} alt={files.title} style={{ width: '100%',
+          <div className="card">
+          <img src={files.image} alt={files.title} style={{ width: '100%',
   height: '300px', 
   objectFit: 'cover'}}/>
+  <div className="card-body">
+    <h5 className="card-title">{files.title}</h5>
+    <a className="btn btn-danger me-2 pointer" onClick={()=>deleteProductFun(files._id)}>Delete</a>
+    <NavLink to={`/auth/admin/product/update/${files._id}`} className="btn btn-primary">Edit</NavLink>
+  </div>
+</div>
 </div>
     ))}
 </div>

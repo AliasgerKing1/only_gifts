@@ -171,7 +171,17 @@ color : #ffc2c3;
   height: 400px; /* Adjust the height to your desired fixed size */
   object-fit: cover; /* Maintain the aspect ratio and cover the entire space */
 }
+.square-image-container {
+  width: 250px; /* Adjust the width as needed */
+  height: 250px; /* Adjust the height to match the width */
+  overflow: hidden; /* Hide any overflow */
+  border-radius: 50%; /* Make the container circular */
+  margin: 0 auto; /* Center the container horizontally */
+}
 
+.fs20 {
+  font-size: 20px !important;
+}
 @media screen and (max-width: 900px) {
   .wrapper2 .carousel {
     grid-auto-columns: calc((100% / 2) - 9px);

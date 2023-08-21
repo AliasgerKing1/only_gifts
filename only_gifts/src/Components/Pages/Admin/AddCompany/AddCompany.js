@@ -3,8 +3,9 @@ import React, {useEffect, useState} from 'react'
 import '../../../../assets/signin/css/style.css'
 import {NavLink, useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux'
-import {addCompany, getCompany} from '../../../../Services/AdminService'
+import {addCompany, deleteCompany, getCompany} from '../../../../Services/AdminService'
 import Header from '../../../Shared/Admin/Header'
+import { getCategoryRed, getCompanyRed, getProductByRed } from '../../../../Redux/AdminNavReducer'
 
 const AddProducts = () => {
     const dispatch = useDispatch()
@@ -26,6 +27,9 @@ const AddProducts = () => {
     
     useEffect(()=> {
         getProductFun()
+        dispatch(getCategoryRed(false))
+        dispatch(getCompanyRed(true))
+        dispatch(getProductByRed(false))
     }, [])
 
     let handleClick = async () => {
@@ -36,6 +40,14 @@ const AddProducts = () => {
         let result = await addCompany(formData)
         let data = result.data.obj
         setImageArray([...imageArray, data])
+    }
+
+    let deleteCompanyFun = async (id) => {
+      let result = await deleteCompany(id)
+      if(result.data.status === 200) {
+      //  Filter out the deleted product from imageArray based on its _id
+      setImageArray((prevImageArray) => prevImageArray.filter((product) => product._id !== result.data.deleted._id));
+      }
     }
   return (
     <>
@@ -66,9 +78,16 @@ const AddProducts = () => {
 <div className='row mb-5 me-5 ms-5 mt-5'>
     {imageArray.map((files, index) => (
         <div className='col-md-4' key={index}>
-    <img src={files.image} alt={files.company} style={{ width: '100%',
+          <div class="card">
+          <img src={files.image} alt={files.company} style={{ width: '100%',
   height: '300px', 
   objectFit: 'cover'}}/>
+  <div class="card-body">
+    <h5 class="card-title">{files.company}</h5>
+    <a class="btn btn-danger me-2 pointer" onClick={()=>deleteCompanyFun(files._id)}>Delete</a>
+    <NavLink to={`/auth/admin/company/update/${files._id}`} className="btn btn-primary">Edit</NavLink>
+  </div>
+</div>
 </div>
     ))}
 </div>

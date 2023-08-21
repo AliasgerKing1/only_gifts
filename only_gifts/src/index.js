@@ -11,11 +11,13 @@ import ProductReducer from './Redux/ProductReducer';
 import ProductMaxReducer from './Redux/ProductMaxReducer';
 import ProductInitialReducer from './Redux/ProductInitialReducer';
 import AdminReducer from './Redux/AdminReducer';
+import AdminNavReducer from './Redux/AdminNavReducer';
 let rootReducer = combineReducers({
   ProductReducer,
   ProductInitialReducer,
   ProductMaxReducer,
   AdminReducer,
+  AdminNavReducer,
 
 })
 let store = configureStore ({
