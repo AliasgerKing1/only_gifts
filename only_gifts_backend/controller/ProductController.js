@@ -105,7 +105,7 @@ res.send(result)
 })
 routes.get('/limit', async (req,res) => {
   console.log('hiii',107)
-let result = await Product.find({}).limit(3)
+let result = await Product.find({}).limit(9)
 res.send(result)
 })
 routes.get('/limit/infinite', async (req,res) => {

@@ -7,6 +7,7 @@ import {getCategory, getCompany, getProductByLimit } from '../../../Services/Adm
 import {getProductRed} from '../../../Redux/ProductReducer' 
 import { useDispatch, useSelector } from 'react-redux'
 import Header from '../../Shared/Header'
+import PdfViewer from '../../Shared/PdfViewer'
 const Home = () => {
   let dispatch = useDispatch()
 let [company, setCompany] = useState()
@@ -64,6 +65,7 @@ let [category, setCategory] = useState()
       carousel.removeEventListener("slid.bs.carousel", resetCarousel);
     };
   }, []);
+  const pdfUrl = 'https://only-gifts-517r.onrender.com/pdf/borchure.pdf'; // Replace with your PDF URL
 
   return (
     <>
@@ -76,7 +78,7 @@ let [category, setCategory] = useState()
           <h5 className="blur">Ready Stocks of 2500+ Gifts, Apparel &amp; Merchandise </h5>
         </div>
         <div className="col-md-3 offset-md-2">
-          <h5 className="blur"><a className='pointer blur'>Click to Download Brochure </a> </h5>
+          <PdfViewer />
         </div>
       </div>
     </div>
@@ -103,6 +105,10 @@ let [category, setCategory] = useState()
                     className="d-block category-img"
                     alt={cat.category}
                   />
+                        <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
                 </div>
               ))}
             </div>
@@ -134,6 +140,7 @@ let [category, setCategory] = useState()
                           className="d-block category-img"
                           alt={comp.category}
                         />
+                    <h5 className='third_fold_h4 pt-2 me-7'>{comp.category}</h5>
                       </div>
                     ))}
                   </div>
@@ -144,19 +151,6 @@ let [category, setCategory] = useState()
         </div>
       </div>
 
-
-        {/* <div className="wrapper2 ms-5">
-          <i id="left" className="fa-solid fa-angle-left" />
-          <ul className="carousel">
-            {category?.map((cat, index) => (
-                          <li>
-                          <div className="img"><img src={cat.image} alt={cat.category} draggable="false" className="category-img" /></div>
-            <h4 className="third_fold_h4 b mt-3">{cat.category}</h4>
-            </li>
-            ))}
-          </ul>
-          <i id="right" className="fa-solid fa-angle-right" />
-        </div> */}
   </section>
   {/* <hr className="end_ruler" /> */}
   <section className="second_fold" id="second">
@@ -222,6 +216,7 @@ let [category, setCategory] = useState()
                           className="d-block category-img"
                           alt={comp.company}
                         />
+                                            <h5 className='third_fold_h4 pt-2 me-7'>{comp.company}</h5>
                       </div>
                     ))}
                   </div>
@@ -231,19 +226,6 @@ let [category, setCategory] = useState()
           </div>
         </div>
       </div>
-        {/* <div className="wrapper2 ms-5">
-          <i id="left" className="fa-solid fa-angle-left" />
-          <ul className="carousel">
-            {company?.map((comp,index) => (
-            <li key={index}>
-            <div className="img"><img src={comp.image} alt={comp.company} draggable="false" className="category-img" /></div>
-            <h4 className="third_fold_h4 b mt-3">{comp.company}</h4>
-            </li>
-            ))}
-          </ul>
-          <i id="right" className="fa-solid fa-angle-right" />
-        </div> */}
-    {/* <hr className="end_ruler m-0" /> */}
   </section>
   <section className="fourth_fold pb-7" id="fourth">
     <div className="row ms-3">
