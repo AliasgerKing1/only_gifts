@@ -15,7 +15,7 @@ const PdfViewer = ({ pdfUrl }) => {
   };
 
   return (
-    <h5 className="blur" onClick={openPdfInNewTab}><a className='pointer blur'>Click to Download Brochure </a> </h5>
+    <h5 className="blur"><a className='pointer blur' onClick={openPdfInNewTab}>Click to Download Brochure </a> </h5>
   );
 };
 
