@@ -8,13 +8,13 @@ return await axios.post(apiUrl, data)
 }
 
 let addProduct = async (data) => {
-    return await axios.post(`https://only-gifts-517r.onrender.com/api/product`, data)
+    return await axios.post(`http://localhost:4005/api/product`, data)
 }
 let deleteProduct = async (id) => {
     return await axios.delete(`https://only-gifts-517r.onrender.com/api/product/${id}`)
 }
 let getProduct = async () => {
-    return await axios.get(`https://only-gifts-517r.onrender.com/api/product`)
+    return await axios.get(`http://localhost:4005/api/product`)
 }
 let updateProduct = async (id, data) => {
     return await axios.put(`https://only-gifts-517r.onrender.com/api/product/${id}`, data)
