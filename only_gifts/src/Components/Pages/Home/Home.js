@@ -78,7 +78,7 @@ let [category, setCategory] = useState()
           <h5 className="blur">Ready Stocks of 2500+ Gifts, Apparel &amp; Merchandise </h5>
         </div>
         <div className="col-md-3 offset-md-2">
-          <PdfViewer />
+          <PdfViewer pdfUrl={pdfUrl} />
         </div>
       </div>
     </div>
