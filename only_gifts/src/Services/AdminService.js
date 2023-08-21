@@ -1,23 +1,23 @@
 import axios from 'axios'
 
-// let apiUrl = 'http://localhost:4005/api/admin/'
-let apiUrl = 'https://only-gifts-517r.onrender.com/api/admin/'
+let apiUrl = 'http://localhost:4005/api/admin/'
+// let apiUrl = 'https://only-gifts-517r.onrender.com/api/admin/'
 
 let loginAdmin = async (data)=> {
 return await axios.post(apiUrl, data)
 }
 
 let addProduct = async (data) => {
-    return await axios.post(`https://only-gifts-517r.onrender.com/api/product`, data)
+    return await axios.post(`http://localhost:4005/api/product`, data)
 }
 let getProduct = async () => {
-    return await axios.get(`https://only-gifts-517r.onrender.com/api/product`)
+    return await axios.get(`http://localhost:4005/api/product`)
 }
 let getProductByLimit = async () => {
-    return await axios.get(`https://only-gifts-517r.onrender.com/api/product/limit`)
+    return await axios.get(`http://localhost:4005/api/product/limit`)
 }
 let getProductByLimitForInfinite = async () => {
-    return await axios.get(`https://only-gifts-517r.onrender.com/api/product/limit/infinite`)
+    return await axios.get(`http://localhost:4005/api/product/limit/infinite`)
 }
 
 let getProductInfinite = async () => {
@@ -25,15 +25,15 @@ let getProductInfinite = async () => {
 }
 
 let addCompany = async (data) => {
-    return await axios.post(`https://only-gifts-517r.onrender.com/api/company`, data)
+    return await axios.post(`http://localhost:4005/api/company`, data)
 }
 let getCompany = async () => {
-    return await axios.get(`https://only-gifts-517r.onrender.com/api/company`)
+    return await axios.get(`http://localhost:4005/api/company`)
 }
 let addCategory = async (data) => {
-    return await axios.post(`https://only-gifts-517r.onrender.com/api/category`, data)
+    return await axios.post(`http://localhost:4005/api/category`, data)
 }
 let getCategory = async () => {
-    return await axios.get(`https://only-gifts-517r.onrender.com/api/category`)
+    return await axios.get(`http://localhost:4005/api/category`)
 }
 export {loginAdmin, addProduct, getProduct, addCompany, getCompany, addCategory, getCategory, getProductByLimit, getProductByLimitForInfinite}

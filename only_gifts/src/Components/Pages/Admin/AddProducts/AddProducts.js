@@ -50,7 +50,7 @@ const AddProducts = () => {
     <form>
       <h3>Add Product</h3>
       <div className="form-holder active">
-        <input type="text" placeholder="Title" className="form-control" name='title' onChange={(e) => setTitle(e.target.value)} value={title}/>
+        <input type="text" placeholder="Title" className="form-control" name='title' onChange={(e) => setTitle(e.target.value.toUpperCase())} value={title}/>
       </div>
      
       <div class="form-holder">
@@ -64,7 +64,7 @@ const AddProducts = () => {
     </form>
   </div>
 </div>
-<div className='row mb-5 me-5 ms-5'>
+<div className='row mb-5 me-5 ms-5 mt-5'>
     {imageArray.map((files, index) => (
         <div className='col-md-4' key={index}>
     <img src={files.image} alt={files.title} style={{ width: '100%',
