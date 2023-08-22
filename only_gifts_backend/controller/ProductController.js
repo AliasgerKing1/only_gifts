@@ -32,7 +32,7 @@ routes.post('/',upload.single('image'), async (req,res)=> {
         const obj = {
           category: category.trim(),
           title: title.trim(),
-          image: `http://localhost:4005/products/${new_name}`
+          image: `https://only-gifts-517r.onrender.com/products/${new_name}`
         };
         await Product.create(obj);
         res.status(200).send({ success: true, obj :  obj});
@@ -87,7 +87,7 @@ routes.post('/',upload.single('image'), async (req,res)=> {
     
         // Check if the 'image' field is present in the request body
         if (req.file) {
-          updateFields.image = `http://localhost:4005/products/${new_name}`; // Update the 'image' field
+          updateFields.image = `https://only-gifts-517r.onrender.com/products/${new_name}`; // Update the 'image' field
         }
     
         // Use the updateFields object to update only the specified fields in the database

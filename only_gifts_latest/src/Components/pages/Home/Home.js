@@ -10,9 +10,9 @@ const Home = () => {
   let [product, setProduct] = useState([])
 
   let getCategoryFun = async () => {
-  let result = await getCategory()
-  setCategory(result.data)
-  }
+    let result = await getCategory()
+    setCategory(result.data)
+    }
   let getProductFun = async () => {
   let result = await getProduct()
   setProduct(result.data)
@@ -22,6 +22,7 @@ const Home = () => {
 getCategoryFun()
 getProductFun()
   }, [])
+  const pdfUrl = 'https://only-gifts-517r.onrender.com/pdf/borchure.pdf'; // Replace with your PDF URL
   return (
     <>
       <div>
@@ -41,7 +42,7 @@ getProductFun()
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><a href="#products">Our Product</a></li>
                 <li><a href="#clients">Our Clients</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><NavLink to="/about">About Us</NavLink></li>
               </ul>
             </div>
           </div>
@@ -66,7 +67,7 @@ Bldg No 47, Sharq - Kuwait</span>
               <h3 className="widget_title">Latest post</h3>
               <div className="recent-post-wrap">
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-1.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-6.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Skinscent Experience
                       Oskarsson</a></h4>
@@ -75,7 +76,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-2.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-5.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Lorem ipsum is
                       placeholder recent popular</a></h4>
@@ -84,7 +85,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-3.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-4.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">From its medieval
                       origins health custom</a></h4>
@@ -93,7 +94,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-4.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-3.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Letraset's
                       dry-transfer sheets later</a></h4>
@@ -137,7 +138,7 @@ Bldg No 47, Sharq - Kuwait</span>
                             <li><NavLink to="/">Home</NavLink></li>
                             <li><a href="#products">Our Products</a></li>
                             <li><a href="#clients">Our Clients</a></li>
-                            <li><a href="#about">About Us</a></li>
+                            <li><NavLink to="/about">About Us</NavLink></li>
                           </ul>
                         </nav>
                       </div>
@@ -154,6 +155,21 @@ Bldg No 47, Sharq - Kuwait</span>
           </div>
         </header>
 
+        <section className="space-top space-extra-bottom">
+    <div className="shape-mockup jump-img d-none d-xl-block" data-left="34%" data-bottom="1%"><img src="/assets/img/shape/leaf-1-6.png" alt="shape" /></div>
+    <div className="container">
+  
+      <div className="row justify-content-between">
+        <div className="col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+<h6><NavLink className='pointer'>Ready Stocks of 2500+ Gifts, Apparel & Merchandise</NavLink></h6>
+        </div>
+        <div className="col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+        <h6><NavLink to={pdfUrl} target='_blank'> Click to Download Brochure</NavLink></h6>
+
+        </div>
+      </div>
+    </div>
+  </section>
         <CategoryCarousel />
         {/* <div className="position-relative space-extra-bottom">
           <div className="gallery-shape1" />
@@ -221,7 +237,7 @@ Bldg No 47, Sharq - Kuwait</span>
                 <div className="product-img"><a href="shop-details.html"><img src={prod.image} style={{ width: '100%',
   height: '300px', 
   objectFit: 'cover'}} alt="product" className="w-100" /></a>
-                  <div className="actions"><a href="#" className="vs-btn style4">Inquire Now</a></div>
+                  <div className="actions"><NavLink to="https://wa.link/vydag0" target='_blank' className="vs-btn style4">Inquire Now</NavLink></div>
                 </div>
                 <div className="product-body">
                   <div className="product-content">
@@ -233,6 +249,11 @@ Bldg No 47, Sharq - Kuwait</span>
             </div>
               ))}
             </div>
+            <div class="package-btn">
+            <NavLink to="/all/product"><a className='pointer vs-btn style3'>View More
+            </a>
+            </NavLink>
+                                    </div>
           </div>
         </section>
         <div className="container">
@@ -285,7 +306,7 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                       <ul className="menu">
                         <li><a href="#products">Our Products</a></li>
                         <li><a href="blog.html">Our Clients</a></li>
-                        <li><a href="about.html">ABOUT US</a></li>
+                        <li><NavLink to="/about">ABOUT US</NavLink></li>
                       </ul>
                     </div>
                   </div>
@@ -307,7 +328,7 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                     <h3 className="widget_title">Recent Post</h3>
                     <div className="recent-post-wrap">
                       <div className="recent-post">
-                        <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-2-1.jpg" alt="Blog Image" /></a></div>
+                        <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-5.jpg" alt="Blog Image" /></a></div>
                         <div className="media-body">
                           <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Managing
                             Partner along</a></h4>
@@ -315,7 +336,7 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                         </div>
                       </div>
                       <div className="recent-post">
-                        <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-2-2.jpg" alt="Blog Image" /></a></div>
+                        <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-6.jpg" alt="Blog Image" /></a></div>
                         <div className="media-body">
                           <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Senior
                             Counsels. Partnr along</a></h4>

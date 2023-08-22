@@ -62,7 +62,7 @@ const CategoryCarousel = () => {
                   >
                     <div className="gallery-style2">
                       <div className="gallery-img">
-                        <img src={image} alt="gallery" />
+                        <img src={image} alt="gallery" className='small-img' />
                       </div>
                       <div className="circle-btn style2">
                         <a href="gallery-details.html" className="btn-icon" tabIndex={-1}>

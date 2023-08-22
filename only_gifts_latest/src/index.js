@@ -4,10 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
+import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import { Provider } from 'react-redux';
+import ProductMaxReducer from './Redux/ProductMaxReducer';
+import ProductInitialReducer from './Redux/ProductInitialReducer';
+
+let rootReducer = combineReducers({
+  ProductInitialReducer,
+  ProductMaxReducer,
+
+})
+let store = configureStore ({
+  reducer : rootReducer
+})
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+  <Provider store={store}>
+  <App />
+  </Provider>
   </BrowserRouter>
 );
 

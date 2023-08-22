@@ -1,9 +1,67 @@
-import Header from '../../shared/Header'
 import React, { useEffect, useState } from 'react'
-import {NavLink} from 'react-router-dom'
+import { getCategory } from '../../../Services/AdminService'
+import { NavLink } from 'react-router-dom'
+import ProductCard from '../../shared/ProductCard/ProductCard';
+import { useDispatch, useSelector } from 'react-redux'
+import {getProductMaxRed} from "../../../Redux/ProductMaxReducer"
+import { getProductByLimitForInfinite } from '../../../Services/AdminService';
+import { getProductInitialRed } from '../../../Redux/ProductInitialReducer';
 const OurProducts = () => {
   let [menu, setMenu] = useState(false)
+  let [category, setCategory] = useState([])
+
   let [sideMenu, setSideMenu] = useState(false)
+  let dispatch = useDispatch();
+  let state2 = useSelector(state2=>state2.ProductMaxReducer)
+    const [isScrolledToFixedHeight, setIsScrolledToFixedHeight] = useState(false);
+    const [pages, setPages] = useState(0);
+    const [infheight, setInfHeight] = useState(300)
+    const fixedHeight = infheight; // the fixed height to check against
+    let getCategoryFun = async () => {
+      let result = await getCategory()
+      setCategory(result.data)
+      }
+      useEffect(()=> {
+        getCategoryFun()
+          }, [])
+    let getInitialDataFun = async () => {
+let result = await getProductByLimitForInfinite()
+dispatch(getProductInitialRed(result.data))
+    }
+    useEffect(() => {
+      getInitialDataFun()
+      if(state2.length == 0) {
+        // setShowSpinner(true);
+        function handleScroll() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const isFixedHeightReached = scrollTop >= fixedHeight;
+          setIsScrolledToFixedHeight(isFixedHeightReached);
+        }
+    
+        window.addEventListener("scroll", handleScroll);
+    
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }
+    }, []);
+  
+      useEffect(() => {
+    if (isScrolledToFixedHeight) {
+        // setShowSpinner(true);
+      // Calling API
+      fetch(`http://localhost:4005/api/product/infinite?limit=6&page=${pages}`)
+        .then((response) => response.json())
+        .then((newData) => {
+// let uniqueArr = [...new Set(arr.map(obj => JSON.stringify(obj)))].map(str => JSON.parse(str));
+dispatch(getProductMaxRed(newData));
+// setShowSpinner(false);
+setPages(pages + 6);
+setInfHeight(infheight + 250);
+          });
+    }
+  }, [isScrolledToFixedHeight]);
+
   return (
     <>
                <div className={`vs-menu-wrapper ${menu ? "vs-body-visible" : ''}`}>
@@ -14,7 +72,7 @@ const OurProducts = () => {
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><a href="#products">Our Product</a></li>
                 <li><a href="#clients">Our Clients</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><NavLink to="/about">About Us</NavLink></li>
               </ul>
             </div>
           </div>
@@ -39,7 +97,7 @@ Bldg No 47, Sharq - Kuwait</span>
               <h3 className="widget_title">Latest post</h3>
               <div className="recent-post-wrap">
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-1.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-6.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Skinscent Experience
                       Oskarsson</a></h4>
@@ -48,7 +106,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-2.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-5.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Lorem ipsum is
                       placeholder recent popular</a></h4>
@@ -57,7 +115,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-3.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-4.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">From its medieval
                       origins health custom</a></h4>
@@ -66,7 +124,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-1-4.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-3.jpg" alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Letraset's
                       dry-transfer sheets later</a></h4>
@@ -82,25 +140,6 @@ Bldg No 47, Sharq - Kuwait</span>
           <form action="#"><input type="text" className="border-theme" placeholder="What are you looking for" /> <button type="submit"><i className="fal fa-search" /></button></form>
         </div>
         <header className="vs-header header-layout2">
-      <div className="header-top">
-  <div className="container">
-    <div className="row justify-content-center justify-content-md-between align-items-center">
-      <div className="col-auto text-center py-2 py-md-0">
-        <div className="header-links style-white">
-          <ul>
-            <li className="d-none d-xxl-inline-block"><i className="far fa-map-marker-alt" />121 King St.
-              Melbourne VIC 3000, Australia</li>
-            <li><i className="far fa-phone-alt" /><a href="tel:+25632542598">(+256) 3254 2598</a></li>
-            <li><i className="far fa-envelope" /><a href="mailto:example@Wellnez.com">example@Wellnez.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="col-auto d-none d-md-block">
-        <div className="social-style1"><a href="#"><i className="fab fa-facebook-f" /></a> <a href="#"><i className="fab fa-twitter" /></a> <a href="#"><i className="fab fa-instagram" /></a> <a href="#"><i className="fab fa-google" /></a> <a href="#"><i className="fab fa-linkedin-in" /></a></div>
-      </div>
-    </div>
-  </div>
-</div>
 
           <div className="sticky-wrap">
             <div className="sticky-active">
@@ -117,7 +156,7 @@ Bldg No 47, Sharq - Kuwait</span>
                             <li><NavLink to="/">Home</NavLink></li>
                             <li><a href="#products">Our Products</a></li>
                             <li><a href="#clients">Our Clients</a></li>
-                            <li><a href="#about">About Us</a></li>
+                            <li><NavLink to="/about">About Us</NavLink></li>
                           </ul>
                         </nav>
                       </div>
@@ -142,11 +181,11 @@ Bldg No 47, Sharq - Kuwait</span>
   <div className="breadcumb-wrapper" data-bg-src="/assets/img/breadcumb/breadcumb-bg-4.jpg">
     <div className="container z-index-common">
       <div className="breadcumb-content">
-        <h1 className="breadcumb-title">Our <span className="inner-text">Shop</span></h1>
+        <h1 className="breadcumb-title">Our <span className="inner-text">Products</span></h1>
         <div className="breadcumb-menu-wrap">
           <ul className="breadcumb-menu">
-            <li><a href="index.html">Home</a></li>
-            <li>Our <span className="inner-text">Shop</span></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li>Our <span className="inner-text">Products</span></li>
           </ul>
         </div>
       </div>
@@ -175,164 +214,11 @@ Bldg No 47, Sharq - Kuwait</span>
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-1.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Safari Max</a></h3>
-                      <div className="product-category"><a href="shop.html">Beauty</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>12</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-2.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Face Oil</a></h3>
-                      <div className="product-category"><a href="shop.html">Fashion</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>20</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-3.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Hand Creams</a></h3>
-                      <div className="product-category"><a href="shop.html">Life Style</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>11</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-4.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Body Sop</a></h3>
-                      <div className="product-category"><a href="shop.html">Cosmetics</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>78</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-5.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Nail Polish</a></h3>
-                      <div className="product-category"><a href="shop.html">Classic</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>11</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-6.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Lipstick Max</a></h3>
-                      <div className="product-category"><a href="shop.html">Beauty</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>36</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-7.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Polish Max</a></h3>
-                      <div className="product-category"><a href="shop.html">Spa Fashion</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>19</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-8.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Massage Oil</a></h3>
-                      <div className="product-category"><a href="shop.html">Popular</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>22</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-9.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Face Powder</a></h3>
-                      <div className="product-category"><a href="shop.html">Recent</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>96</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-10.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Hair Shine</a></h3>
-                      <div className="product-category"><a href="shop.html">Fashion</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>55</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-11.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Nail Polish</a></h3>
-                      <div className="product-category"><a href="shop.html">Popular</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>13</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-4">
-                <div className="vs-product product-style2">
-                  <div className="product-img"><a href="shop-details.html"><img src="/assets/img/product/p-2-12.png" alt="product" className="w-100" /></a>
-                    <div className="actions"><a href="#" className="icon-btn"><i className="far fa-heart" /></a> <a href="#" className="icon-btn"><i className="far fa-eye" /></a> <a href="#" className="icon-btn"><i className="far fa-shopping-cart" /></a></div>
-                  </div>
-                  <div className="product-body">
-                    <div className="product-content">
-                      <h3 className="product-title"><a className="text-inherit" href="shop-details.html">Pro Perfume</a></h3>
-                      <div className="product-category"><a href="shop.html">Beauty</a></div>
-                    </div><span className="product-price"><span className="currency">$</span>11</span>
-                  </div>
-                </div>
-              </div>
+            <ProductCard state={state2} />
+
+
             </div>
-            <div className="vs-pagination">
+            {/* <div className="vs-pagination">
               <ul>
                 <li><a href="#">Prev</a></li>
                 <li><a className="active" href="#">1</a></li>
@@ -341,25 +227,24 @@ Bldg No 47, Sharq - Kuwait</span>
                 <li><a href="#">6</a></li>
                 <li><a href="#">Next</a></li>
               </ul>
-            </div>
+            </div> */}
           </div>
           <div className="col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
             <aside className="sidebar-area ps-lg-3 ps-xxl-0">
-              <div className="widget">
+              {/* <div className="widget">
                 <h3 className="widget_title">Filter By</h3>
                 <div className="range-slider-area">
                   <div className="price-amount"><span className="title">Price:</span><span id="minAmount" /> - <span id="maxAmount" /></div>
                   <div id="slider-range" /><button className="filter-btn">Filter</button> <button className="reset-btn"><i className="far fa-trash-alt" />Clear All</button>
                 </div>
-              </div>
+              </div> */}
               <div className="widget">
                 <h3 className="widget_title">Category</h3>
                 <div className="category-filter">
                   <ul>
-                    <li><input type="checkbox" id="babys" name="babys" /> <label htmlFor="babys">babys</label> <span className="total">03</span></li>
-                    <li><input type="checkbox" id="mans" name="mans" /> <label htmlFor="mans">mans</label>
-                      <span className="total">06</span></li>
-                    <li><input type="checkbox" id="womans" name="womans" /> <label htmlFor="womans">womans</label> <span className="total">05</span></li>
+                    {category?.map((cat, index) => (
+                    <li key={index}><input type="checkbox" id={cat.category} name={cat.category} /> <label htmlFor={cat.category}>{cat.category}</label> <span className="total">{index}</span></li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -408,102 +293,98 @@ Bldg No 47, Sharq - Kuwait</span>
       </div>
     </div>
   </section>
-  <footer className="footer-wrapper footer-layout1">
-    <div className="footer-top">
-      <div className="container">
-        <div className="row align-items-stretch">
-          <div className="col-md-4 d-none d-lg-flex">
-            <div className="social-style2"><a href="#"><i className="fab fa-facebook-f" /></a> <a href="#"><i className="fab fa-twitter" /></a> <a href="#"><i className="fab fa-instagram" /></a> <a href="#"><i className="fab fa-linkedin-in" /></a></div>
-          </div>
-          <div className="col-md-5 col-lg-4">
-            <div className="vs-logo"><a href="index.html"><img src="/assets/img/logo-2.svg" alt="logo" /></a></div>
-          </div>
-          <div className="col-md-7 col-lg-4">
-            <form action="#" className="form-style1">
-              <h3 className="form-title">Our newsletter</h3>
-              <div className="form-group"><input type="email" placeholder="Enter your email..." /> <button className="vs-btn" type="submit">Subscribe</button></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="widget-area">
-      <div className="container">
-        <div className="row justify-content-between">
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget footer-widget">
-              <h3 className="widget_title">About Wellnez</h3>
-              <p className="footer-info"><i className="fal fa-map-marker-alt text-theme me-2" /> Centerl Park
-                West La, New York<br /><a href="tel:+01234567890" className="text-inherit"><i className="far fa-phone-alt text-theme me-2" />+0 123 456 7890</a><br /><a className="text-inherit" href="mailto:info@example.com"><i className="fal fa-envelope text-theme me-2" />info@example.com</a></p>
-              <h4 className="fs-22 mb-2">Open Hours</h4>
-              <p className="footer-time">Sunday to Friday <span className="time">08:00 - 20:00</span></p>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget widget_nav_menu footer-widget">
-              <h3 className="widget_title">Important Links</h3>
-              <div className="menu-all-pages-container footer-menu">
-                <ul className="menu">
-                  <li><a href="service.html">Serivces</a></li>
-                  <li><a href="about.html">ABOUT US</a></li>
-                  <li><a href="price-plan.html">Price Plan</a></li>
-                  <li><a href="contact.html">CONTACT</a></li>
-                  <li><a href="blog.html">Our Blog</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget widget_nav_menu footer-widget">
-              <h3 className="widget_title">CATEGORIES</h3>
-              <div className="menu-all-pages-container footer-menu">
-                <ul className="menu">
-                  <li><a href="service.html">SKINCARE</a></li>
-                  <li><a href="service.html">MAKEUP</a></li>
-                  <li><a href="service.html">FRAGRANCE</a></li>
-                  <li><a href="service.html">HAIRCARE</a></li>
-                  <li><a href="service.html">BATH &amp; BODY</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 col-xl-auto">
-            <div className="widget footer-widget">
-              <h3 className="widget_title">Recent Post</h3>
-              <div className="recent-post-wrap">
-                <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-2-1.jpg" alt="Blog Image" /></a></div>
-                  <div className="media-body">
-                    <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Managing
-                        Partner along</a></h4>
-                    <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />05 AUG, 2023</a></div>
-                  </div>
+  <footer className="footer-wrapper footer-layout1" id='about'>
+          <div className="footer-top">
+            <div className="container">
+              <div className="row align-items-stretch">
+                <div className="col-md-4 d-none d-lg-flex">
+                  <div className="social-style2"><a className='pointer'><NavLink to="https://wa.link/vydag0" target='_blank'><i className="fab fa-whatsapp" /></NavLink></a><NavLink to="https://www.instagram.com/onlygiftskwt/" target='_blank'><i className="fab fa-instagram" /></NavLink></div>
                 </div>
-                <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/recent-post-2-2.jpg" alt="Blog Image" /></a></div>
-                  <div className="media-body">
-                    <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Senior
-                        Counsels. Partnr along</a></h4>
-                    <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />11 AUG, 2023</a></div>
-                  </div>
+                <div className="col-md-5 col-lg-4">
+                  <div className="vs-logo"><a href="index.html"><img src="/assets/img/logo-2.svg" alt="logo" /></a></div>
+                </div>
+                <div className="col-md-7 col-lg-4">
+                  <form action="#" className="form-style1">
+                    <h3 className="form-title">Our newsletter</h3>
+                    <div className="form-group"><input type="email" placeholder="Enter your email..." /> <button className="vs-btn" type="submit">Subscribe</button></div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div className="copyright-wrap">
-      <div className="container">
-        <div className="row justify-content-between align-items-center">
-          <div className="col-md-auto text-center">
-            <p className="copyright-text">Copyright <i className="fal fa-copyright" /> 2023 <a href="index.html">Wellnez</a>. All Rights Reserved By <a href="https://themeforest.net/user/vecuro_themes">Vecuro</a></p>
+          <div className="widget-area">
+            <div className="container">
+              <div className="row justify-content-between">
+                <div className="col-md-6 col-xl-auto">
+                  <div className="widget footer-widget">
+                    <h3 className="widget_title">About Onlygiftskwt</h3>
+                    <p className="footer-info"><i className="fal fa-map-marker-alt text-theme me-2" /> Darwaza Abdul Razzak,
+Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inherit"><i className="far fa-phone-alt text-theme me-2" />+965 6634 1165</a><br /><a className="text-inherit" href="mailto:sales@onlygiftskwt.com"><i className="fal fa-envelope text-theme me-2" />sales@onlygiftskwt.com</a></p>
+                    <h4 className="fs-22 mb-2">Open Hours</h4>
+                    <p className="footer-time">Monday to Saturday <span className="time">08:00 AM - 08:00 PM</span></p>
+                  </div>
+                </div>
+                <div className="col-md-6 col-xl-auto">
+                  <div className="widget widget_nav_menu footer-widget">
+                    <h3 className="widget_title">Important Links</h3>
+                    <div className="menu-all-pages-container footer-menu">
+                      <ul className="menu">
+                        <li><a href="#products">Our Products</a></li>
+                        <li><a href="blog.html">Our Clients</a></li>
+                        <li><NavLink to="/about">ABOUT US</NavLink></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6 col-xl-auto">
+                  <div className="widget widget_nav_menu footer-widget">
+                    <h3 className="widget_title">CATEGORIES</h3>
+                    <div className="menu-all-pages-container footer-menu">
+                      <ul className="menu">
+                        {category.map((cat, index) => (
+                        <li key={index}><a className='cursor_default'>{cat.category}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6 col-xl-auto">
+                  <div className="widget footer-widget">
+                    <h3 className="widget_title">Recent Post</h3>
+                    <div className="recent-post-wrap">
+                      <div className="recent-post">
+                        <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-5.jpg" alt="Blog Image" /></a></div>
+                        <div className="media-body">
+                          <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Managing
+                            Partner along</a></h4>
+                          <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />05 AUG, 2023</a></div>
+                        </div>
+                      </div>
+                      <div className="recent-post">
+                        <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-6.jpg" alt="Blog Image" /></a></div>
+                        <div className="media-body">
+                          <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Senior
+                            Counsels. Partnr along</a></h4>
+                          <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />11 AUG, 2023</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="col-auto d-none d-md-block"><img src="/assets/img/widget/cards.png" alt="cards" /></div>
-        </div>
-      </div>
-    </div>
-  </footer><a href="#" className="scrollToTop scroll-btn"><i className="far fa-arrow-up" /></a>
+          <div className="copyright-wrap">
+            <div className="container">
+              <div className="row justify-content-between align-items-center">
+                <div className="col-md-auto text-center">
+                  <p className="copyright-text">Copyright <i className="fal fa-copyright" /> 2023 <a href="index.html">Onlygiftskwt</a>. All Rights Reserved By <a href="https://themeforest.net/user/vecuro_themes">Aliasger</a></p>
+                </div>
+                <div className="col-auto d-none d-md-block"><img src="/assets/img/widget/cards.png" alt="cards" /></div>
+              </div>
+            </div>
+          </div>
+        </footer><a href="#" className="scrollToTop scroll-btn"><i className="far fa-arrow-up" /></a>
 </div>
 
 
