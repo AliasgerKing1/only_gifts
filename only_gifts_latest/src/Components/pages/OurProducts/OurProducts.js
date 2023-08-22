@@ -50,7 +50,7 @@ dispatch(getProductInitialRed(result.data))
     if (isScrolledToFixedHeight) {
         // setShowSpinner(true);
       // Calling API
-      fetch(`http://localhost:4005/api/product/infinite?limit=6&page=${pages}`)
+      fetch(`https://only-gifts-517r.onrender.com/api/product/infinite?limit=6&page=${pages}`)
         .then((response) => response.json())
         .then((newData) => {
 // let uniqueArr = [...new Set(arr.map(obj => JSON.stringify(obj)))].map(str => JSON.parse(str));
