@@ -1,21 +1,21 @@
 import React from 'react';
 
 const PdfViewer = ({ pdfUrl }) => {
-  const openPdfInNewTab = () => {
-    // Open the PDF in a new tab
-    window.open(pdfUrl, '_blank');
-    
-    // Create an invisible <a> element for downloading
-    const downloadLink = document.createElement('a');
-    downloadLink.href = pdfUrl;
-    downloadLink.download = 'your-pdf-filename.pdf'; // Set the desired filename
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
+  const downloadPdf = () => {
+    let file = pdfUrl.split("/");
+    let last = file[file.length - 1];
+    let fileByDot = last.split(".");
+    let lastByDot = fileByDot[0];
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = lastByDot; // Specify the desired filename for the downloaded PDF
+    link.click();
   };
 
   return (
-    <h5 className="blur"><a className='pointer blur' onClick={openPdfInNewTab}>Click to Download Brochure </a> </h5>
+    <h5 className="blur" onClick={downloadPdf}>
+      <a className='pointer blur'>Click to Download Brochure</a>
+    </h5>
   );
 };
 

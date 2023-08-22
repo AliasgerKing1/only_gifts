@@ -16,6 +16,8 @@ const UpdateProducts = () => {
     let [imageArray, setImageArray] = useState([])
     let [image, setImage] = useState()
     let [title, setTitle] = useState('')
+    let [category, setCategory] = useState('')
+
 
 let handleClick = async () => {
   event.preventDefault(); // Prevent the form from submitting and refreshing the page
@@ -24,6 +26,10 @@ let handleClick = async () => {
     // Create a FormData object to hold the data
     const formData = new FormData();
   
+    // Check if the title has changed and add it to the FormData object
+    if (category.trim() !== '') {
+      formData.append('category', category.trim());
+    }
     // Check if the title has changed and add it to the FormData object
     if (title.trim() !== '') {
       formData.append('title', title.trim());
@@ -54,6 +60,9 @@ let handleClick = async () => {
       <h3>Update Product</h3>
       <div className="form-holder active">
         <input type="text" placeholder="Title" className="form-control" name='title' onChange={(e) => setTitle(e.target.value.toUpperCase())} value={title}/>
+      </div>
+      <div className="form-holder">
+        <input type="text" placeholder="Category" className="form-control" name='category' onChange={(e) => setCategory(e.target.value.toUpperCase())} value={category}/>
       </div>
      
       <div class="form-holder">
