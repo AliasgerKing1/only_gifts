@@ -252,24 +252,24 @@ Bldg No 47, Sharq - Kuwait</span>
                 <h3 className="widget_title">Latest Products</h3>
                 <div className="latest-product-area">
                   <div className="latest-product">
-                    <div className="media-img"><a href="shop-details.html"><img src="/assets/img/widget/p-1-1.png" alt="product" /></a></div>
+                    <div className="media-img"><NavLink to="/all/product"><img src="/assets/img/widget/p-9-1.jpg" alt="product" /></NavLink></div>
                     <div className="media-body">
-                      <h4 className="product-title"><a className="text-inherit" href="shop-details.html">Nail Polish</a></h4>
-                      <p className="product-price"><span className="currency">$</span>12.00</p>
+                      <h4 className="product-title"><NavLink className="text-inherit" to="/all/product"> Premium Backpack</NavLink></h4>
+                      <p className="product-price"><span className="currency">$</span>5.00</p>
                     </div>
                   </div>
                   <div className="latest-product">
-                    <div className="media-img"><a href="shop-details.html"><img src="/assets/img/widget/p-1-2.png" alt="product" /></a></div>
+                    <div className="media-img"><NavLink to="/all/product"><img src="/assets/img/widget/p-9-2.jpg" alt="product" /></NavLink></div>
                     <div className="media-body">
-                      <h4 className="product-title"><a className="text-inherit" href="shop-details.html">Woman Waxing</a></h4>
+                      <h4 className="product-title"><NavLink className="text-inherit" to="/all/product">Premium Giftset</NavLink></h4>
                       <p className="product-price"><span className="currency">$</span>22.00</p>
                     </div>
                   </div>
                   <div className="latest-product">
-                    <div className="media-img"><a href="shop-details.html"><img src="/assets/img/widget/p-1-3.png" alt="product" /></a></div>
+                    <div className="media-img"><NavLink to="/all/product"><img src="/assets/img/widget/p-9-3.jpg" alt="product" /></NavLink></div>
                     <div className="media-body">
-                      <h4 className="product-title"><a className="text-inherit" href="shop-details.html">Body Soup</a></h4>
-                      <p className="product-price"><span className="currency">$</span>18.00</p>
+                      <h4 className="product-title"><NavLink className="text-inherit" to="/all/product">NoteBook</NavLink></h4>
+                      <p className="product-price"><span className="currency">$</span>8.00</p>
                     </div>
                   </div>
                 </div>
@@ -277,10 +277,18 @@ Bldg No 47, Sharq - Kuwait</span>
               <div className="widget">
                 <h4 className="widget_title">instagram</h4>
                 <div className="sidebar-gallery">
-                  <div className="gallery-thumb"><img src="/assets/img/widget/gal-1-1.jpg" alt="Gallery Image" className="w-100" /></div>
-                  <div className="gallery-thumb"><img src="/assets/img/widget/gal-1-2.jpg" alt="Gallery Image" className="w-100" /></div>
-                  <div className="gallery-thumb"><img src="/assets/img/widget/gal-1-3.jpg" alt="Gallery Image" className="w-100" /></div>
-                  <div className="gallery-thumb"><img src="/assets/img/widget/gal-1-4.jpg" alt="Gallery Image" className="w-100" /></div>
+                  <div className="gallery-thumb"><img src="/assets/img/widget/p-9-3.jpg" alt="Gallery Image" className="w-100" style={{ width: '100%',
+  height: '120px', 
+  objectFit: 'cover', border: '2px solid gray'}} /></div>
+                  <div className="gallery-thumb"><img src="/assets/img/widget/p-9-5.jpg" alt="Gallery Image" className="w-100" style={{ width: '100%',
+  height: '120px', 
+  objectFit: 'cover', border: '2px solid gray'}} /></div>
+                  <div className="gallery-thumb"><img src="/assets/img/widget/p-9-6.jpg" alt="Gallery Image" className="w-100" style={{ width: '100%',
+  height: '120px', 
+  objectFit: 'cover', border: '2px solid gray'}} /></div>
+                  <div className="gallery-thumb"><img src="/assets/img/widget/p-9-1.jpg" alt="Gallery Image" className="w-100" style={{ width: '100%',
+  height: '120px', 
+  objectFit: 'cover', border: '2px solid gray'}} /></div>
                 </div>
               </div>
               <div className="widget widget_tag_cloud">

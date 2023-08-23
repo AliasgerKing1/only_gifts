@@ -57,7 +57,7 @@ Bldg No 47, Sharq - Kuwait</span>
               <h3 className="widget_title">Latest post</h3>
               <div className="recent-post-wrap">
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-6.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-6.jpg" style={{border: '1px solid rgba(196, 198, 200, .3)'}} alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Skinscent Experience
                       Oskarsson</a></h4>
@@ -66,7 +66,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-5.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-5.jpg" style={{border: '1px solid rgba(196, 198, 200, .3)'}} alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Lorem ipsum is
                       placeholder recent popular</a></h4>
@@ -75,7 +75,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-4.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-4.jpg" style={{border: '1px solid rgba(196, 198, 200, .3)'}} alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">From its medieval
                       origins health custom</a></h4>
@@ -84,7 +84,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   </div>
                 </div>
                 <div className="recent-post">
-                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-3.jpg" alt="Blog Image" /></a></div>
+                  <div className="media-img"><a href="blog-details.html"><img src="/assets/img/widget/p-9-3.jpg" style={{border: '1px solid rgba(196, 198, 200, .3)'}} alt="Blog Image" /></a></div>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Letraset's
                       dry-transfer sheets later</a></h4>

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 const ProductImages = [
   {
     image : "/assets/img/product/p-9-1.jpg",
-    title : 'Backpack',
+    title : 'Premium Backpack',
     category : 'Lugadge & Bags',
   },
   {
@@ -23,7 +23,7 @@ const ProductImages = [
   },
   {
     image : "/assets/img/product/p-9-5.jpg",
-    title : 'Bottle',
+    title : 'Water Bottle',
     category : 'Stationary',
   },
   {
