@@ -203,11 +203,13 @@ Bldg No 47, Sharq - Kuwait</span>
             </div>
           </div>
         </header>
-
+  
+        {screenWidth > 1398 && screenWidth < 2700 ? (<section style={{width : '100%', height : '100px'}}></section>) : null}
     <div className="container">
   
+
       <div className="row justify-content-between">
-        <div className="col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+        <div className="col-md-6 col-xl-3  wow fadeInUp" data-wow-delay="0.2s">
 <h6><NavLink className='pointer'>Ready Stocks of 2500+ Gifts, Apparel & Merchandise</NavLink></h6>
         </div>
         <div className="col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">

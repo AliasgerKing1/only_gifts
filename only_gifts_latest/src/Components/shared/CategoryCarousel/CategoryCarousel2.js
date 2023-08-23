@@ -25,6 +25,7 @@ const CategoryCarousel = () => {
 
   return (
     <>
+
       <div className="position-relative space-extra-bottom">
         <div className="gallery-shape1" />
         <div className="container-fluid">
