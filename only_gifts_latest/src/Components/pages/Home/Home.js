@@ -234,7 +234,7 @@ Bldg No 47, Sharq - Kuwait</span>
               <div className="vs-product product-style1">
                 <div className="product-img"><a href="shop-details.html"><img src={prod.image} style={{ width: '100%',
   height: '300px', 
-  objectFit: 'cover'}} alt={prod.title} className="w-100" /></a>
+  objectFit: 'cover', border: '2px solid gray'}} alt={prod.title} className="w-100" /></a>
                   <div className="actions"><NavLink to="https://wa.link/vydag0" target='_blank' className="vs-btn style4">Inquire Now</NavLink></div>
                 </div>
                 <div className="product-body">

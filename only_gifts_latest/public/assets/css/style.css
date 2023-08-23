@@ -12709,6 +12709,7 @@ blockquote.vs-quote cite:before {
     text-align: center;
     position: relative;
     margin: 0 0 20px 0
+    
 }
 
 .product-style1 .product-img:before {
@@ -12823,7 +12824,8 @@ blockquote.vs-quote cite:before {
     background-color: #f1f1f1;
     overflow: hidden;
     margin-bottom: 23px;
-    position: relative
+    position: relative;
+    border: 2px solid gray;
 }
 
 .product-style2 .product-img img {
