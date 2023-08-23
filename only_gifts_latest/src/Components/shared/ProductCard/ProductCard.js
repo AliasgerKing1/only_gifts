@@ -15,7 +15,7 @@ const ProductCard = (props) => {
     {ProductImages.map((prod, index) => (
                    <div className="col-md-6 col-xl-4" key={index}>
                    <div className="vs-product product-style2">
-                     <div className="product-img"><a href="shop-details.html"><img src={prod.image} alt="product" className="w-100" style={{ width: '100%',
+                     <div className="product-img"><a href="shop-details.html"><img src={prod} alt="product" className="w-100" style={{ width: '100%',
   height: '300px', 
   objectFit: 'cover'}} /></a>
                        <div className="actions"> <a href="#" className="icon-btn"><i className="far fa-eye" /></a></div>
