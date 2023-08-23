@@ -3,11 +3,23 @@ import { getCategory, getProduct } from '../../../Services/AdminService'
 import {NavLink} from 'react-router-dom'
 import ClientCarousel from '../../shared/ClientCarousel/ClientCarousel'
 import CategoryCarousel from '../../shared/CategoryCarousel/CategoryCarousel'
+import CategoryCarousel2 from '../../shared/CategoryCarousel/CategoryCarousel2'
+
+const ProductImages = [
+  "/assets/img/product/p-9-1.jpg",
+  "/assets/img/product/p-9-2.jpg",
+  "/assets/img/product/p-9-3.jpg",
+  "/assets/img/product/p-9-4.jpg",
+  "/assets/img/product/p-9-5.jpg",
+  "/assets/img/product/p-9-6.jpg",
+  // Add more image paths as needed
+];
 const Home = () => {
   let [menu, setMenu] = useState(false)
   let [sideMenu, setSideMenu] = useState(false)
   let [category, setCategory] = useState([])
   let [product, setProduct] = useState([])
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   let getCategoryFun = async () => {
     let result = await getCategory()
@@ -22,6 +34,19 @@ const Home = () => {
 getCategoryFun()
 getProductFun()
   }, [])
+
+  
+  useEffect(() => {
+    function updateScreenWidth() {
+      setScreenWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', updateScreenWidth);
+
+    return () => {
+      window.removeEventListener('resize', updateScreenWidth);
+    };
+  }, []);
   const pdfUrl = 'https://only-gifts-517r.onrender.com/pdf/borchure.pdf'; // Replace with your PDF URL
   return (
     <>
@@ -170,56 +195,8 @@ Bldg No 47, Sharq - Kuwait</span>
       </div>
     </div>
   </section>
-        <CategoryCarousel />
-        {/* <div className="position-relative space-extra-bottom">
-          <div className="gallery-shape1" />
-          <div className="container-fluid">
-            <div className="row gallery-slider1 vs-carousel" data-slide-show={1} data-center-mode="true" data-xl-center-mode="true" data-ml-center-mode="true" data-lg-center-mode="true" data-md-center-mode="true" data-center-padding="477px" data-xl-center-padding="320px" data-ml-center-padding="200px" data-lg-center-padding="150px" data-md-center-padding="80px">
-              <div className="col">
-                <div className="gallery-style2">
-                  <div className="gallery-img"><img src="/assets/img/gallery/gal-3-1.jpg" alt="gallery" /></div>
-                  <div className="circle-btn style2"><a href="gallery-details.html" className="btn-icon"><i className="far fa-arrow-right" /></a>
-                    <div className="btn-text"><svg viewBox="0 0 150 150"><text>
-                      <textPath href="#textPath">how to make your makeup last all day</textPath>
-                    </text></svg></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="gallery-style2">
-                  <div className="gallery-img"><img src="/assets/img/gallery/gal-3-2.jpg" alt="gallery" /></div>
-                  <div className="circle-btn style2"><a href="gallery-details.html" className="btn-icon"><i className="far fa-arrow-right" /></a>
-                    <div className="btn-text"><svg viewBox="0 0 150 150"><text>
-                      <textPath href="#textPath">how to make your makeup last all day</textPath>
-                    </text></svg></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="gallery-style2">
-                  <div className="gallery-img"><img src="/assets/img/gallery/gal-3-3.jpg" alt="gallery" /></div>
-                  <div className="circle-btn style2"><a href="gallery-details.html" className="btn-icon"><i className="far fa-arrow-right" /></a>
-                    <div className="btn-text"><svg viewBox="0 0 150 150"><text>
-                      <textPath href="#textPath">how to make your makeup last all day</textPath>
-                    </text></svg></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="gallery-style2">
-                  <div className="gallery-img"><img src="/assets/img/gallery/gal-3-4.jpg" alt="gallery" /></div>
-                  <div className="circle-btn style2"><a href="gallery-details.html" className="btn-icon"><i className="far fa-arrow-right" /></a>
-                    <div className="btn-text"><svg viewBox="0 0 150 150"><text>
-                      <textPath href="#textPath">how to make your makeup last all day</textPath>
-                    </text></svg></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="arrows-style1"><button data-slick-prev=".gallery-slider1"><i className="arrow" />Prev</button>
-              <button data-slick-next=".gallery-slider1"><i className="arrow" />Next</button></div>
-          </div>
-        </div> */}
+  {screenWidth < 992 ? (<CategoryCarousel />) : (<CategoryCarousel2 />)}
+      
         <section className="space-top" id='products'>
           <div className="container">
             <div className="row mb-5">
@@ -231,7 +208,7 @@ Bldg No 47, Sharq - Kuwait</span>
               </div>
             </div>
             <div className="row vs-carousel" data-slide-show={4} data-ml-slide-show={3} data-lg-slide-show={3} data-md-slide-show={2}>
-              {product?.map((prod, index) => (
+              {ProductImages ?.map((prod, index) => (
               <div className="col-xl-3" key={index}>
               <div className="vs-product product-style1">
                 <div className="product-img"><a href="shop-details.html"><img src={prod.image} style={{ width: '100%',

@@ -1,9 +1,18 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+const ProductImages = [
+  "/assets/img/product/p-9-1.jpg",
+  "/assets/img/product/p-9-2.jpg",
+  "/assets/img/product/p-9-3.jpg",
+  "/assets/img/product/p-9-4.jpg",
+  "/assets/img/product/p-9-5.jpg",
+  "/assets/img/product/p-9-6.jpg",
+  // Add more image paths as needed
+];
 const ProductCard = (props) => {
   return (
     <>
-    {props?.state?.map((prod, index) => (
+    {ProductImages.map((prod, index) => (
                    <div className="col-md-6 col-xl-4" key={index}>
                    <div className="vs-product product-style2">
                      <div className="product-img"><a href="shop-details.html"><img src={prod.image} alt="product" className="w-100" style={{ width: '100%',

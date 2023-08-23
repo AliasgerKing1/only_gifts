@@ -30,9 +30,9 @@ getCategoryFun()
             <div className="vs-mobile-menu">
               <ul>
                 <li><NavLink to="/">Home</NavLink></li>
-                <li><a href="#products">Our Product</a></li>
-                <li><a href="#clients">Our Clients</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><NavLink to="/all/product">Our Product</NavLink></li>
+                <li><NavLink to="/">Our Clients</NavLink></li>
+                <li><NavLink to="/about">About Us</NavLink></li>
               </ul>
             </div>
           </div>
