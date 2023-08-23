@@ -166,7 +166,6 @@ Bldg No 47, Sharq - Kuwait</li>
     </div>
   </div>
   <section className="space-top space-extra-bottom">
-    <div className="shape-mockup jump-img d-none d-xl-block" data-left="34%" data-bottom="1%"><img src="/assets/img/shape/leaf-1-6.png" alt="shape" /></div>
     <div className="container">
       <div className="row justify-content-between gx-0">
         <div className="col-md-10"><span className="sec-subtitle">welcome</span>
@@ -211,7 +210,7 @@ Bldg No 47, Sharq - Kuwait</li>
           <div className="row gx-60">
             <div className="col-auto"><span className="about-number">02</span></div>
             <div className="col">
-              <h4 className="fw-medium fs-26 font-body mt-n1 mb-lg-3 pb-lg-1">Give Our Beutiful Gifts</h4>
+              <h4 className="fw-medium fs-26 font-body mt-n1 mb-lg-3 pb-lg-1">Give our beutiful gifts</h4>
               <div className="list-style1">
                 <ul className="list-unstyled">
                   <li>lorem ispum de</li>
@@ -297,9 +296,9 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                     <h3 className="widget_title">Important Links</h3>
                     <div className="menu-all-pages-container footer-menu">
                       <ul className="menu">
-                        <li><a href="#products">Our Products</a></li>
-                        <li><a href="blog.html">Our Clients</a></li>
-                        <li><a href="about.html">ABOUT US</a></li>
+                        <li><NavLink to="/all/product">Our Products</NavLink></li>
+                        <li><NavLink to="/">Our Clients</NavLink></li>
+                        <li><NavLink to="/about">ABOUT US</NavLink></li>
                       </ul>
                     </div>
                   </div>

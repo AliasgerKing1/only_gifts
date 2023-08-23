@@ -329,8 +329,8 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                     <h3 className="widget_title">Important Links</h3>
                     <div className="menu-all-pages-container footer-menu">
                       <ul className="menu">
-                        <li><a href="#products">Our Products</a></li>
-                        <li><a href="blog.html">Our Clients</a></li>
+                        <li><NavLink to="/all/product">Our Products</NavLink></li>
+                        <li><NavLink to="/">Our Clients</NavLink></li>
                         <li><NavLink to="/about">ABOUT US</NavLink></li>
                       </ul>
                     </div>

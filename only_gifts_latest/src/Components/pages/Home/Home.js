@@ -96,7 +96,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Skinscent Experience
                       Oskarsson</a></h4>
-                    <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />march
+                    <div className="recent-post-meta"><a href="#"><i className="fas fa-calendar-alt" />march
                       10, 2023</a></div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Lorem ipsum is
                       placeholder recent popular</a></h4>
-                    <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />Augest
+                    <div className="recent-post-meta"><a href="#"><i className="fas fa-calendar-alt" />Augest
                       10, 2023</a></div>
                   </div>
                 </div>
@@ -114,7 +114,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">From its medieval
                       origins health custom</a></h4>
-                    <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />July
+                    <div className="recent-post-meta"><a href="#"><i className="fas fa-calendar-alt" />July
                       11, 2023</a></div>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ Bldg No 47, Sharq - Kuwait</span>
                   <div className="media-body">
                     <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Letraset's
                       dry-transfer sheets later</a></h4>
-                    <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />March
+                    <div className="recent-post-meta"><a href="#"><i className="fas fa-calendar-alt" />March
                       05, 2023</a></div>
                   </div>
                 </div>
@@ -278,8 +278,8 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                     <h3 className="widget_title">Important Links</h3>
                     <div className="menu-all-pages-container footer-menu">
                       <ul className="menu">
-                        <li><a href="#products">Our Products</a></li>
-                        <li><a href="blog.html">Our Clients</a></li>
+                        <li><NavLink to="/all/product">Our Products</NavLink></li>
+                        <li><NavLink to="/">Our Clients</NavLink></li>
                         <li><NavLink to="/about">ABOUT US</NavLink></li>
                       </ul>
                     </div>
@@ -306,7 +306,7 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                         <div className="media-body">
                           <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Managing
                             Partner along</a></h4>
-                          <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />05 AUG, 2023</a></div>
+                          <div className="recent-post-meta"><a href="#"><i className="fas fa-calendar-alt" />05 AUG, 2023</a></div>
                         </div>
                       </div>
                       <div className="recent-post">
@@ -314,7 +314,7 @@ Bldg No 47, Sharq - Kuwait<br /><a href="tel:+965 6634 1165" className="text-inh
                         <div className="media-body">
                           <h4 className="post-title"><a className="text-inherit" href="blog-details.html">Senior
                             Counsels. Partnr along</a></h4>
-                          <div className="recent-post-meta"><a href="blog.html"><i className="fas fa-calendar-alt" />11 AUG, 2023</a></div>
+                          <div className="recent-post-meta"><a href="#"><i className="fas fa-calendar-alt" />11 AUG, 2023</a></div>
                         </div>
                       </div>
                     </div>
