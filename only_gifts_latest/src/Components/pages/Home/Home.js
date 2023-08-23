@@ -209,10 +209,10 @@ Bldg No 47, Sharq - Kuwait</span>
   
 
       <div className="row justify-content-between">
-        <div className="col-md-6 col-xl-3  wow fadeInUp" data-wow-delay="0.2s">
+        <div className="col-md-6 col-xl-4   wow fadeInUp" data-wow-delay="0.2s">
 <h6><NavLink className='pointer'>Ready Stocks of 2500+ Gifts, Apparel & Merchandise</NavLink></h6>
         </div>
-        <div className="col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+        <div className="col-md-6 col-xl-4  wow fadeInUp" data-wow-delay="0.3s">
         <h6><NavLink to={pdfUrl} target='_blank'> Click to Download Brochure</NavLink></h6>
 
         </div>
@@ -234,15 +234,15 @@ Bldg No 47, Sharq - Kuwait</span>
               {ProductImages ?.map((prod, index) => (
               <div className="col-xl-3" key={index}>
               <div className="vs-product product-style1">
-                <div className="product-img"><a href="shop-details.html"><img src={prod.image} style={{ width: '100%',
+                <div className="product-img"><NavLink to="/all/product"><img src={prod.image} style={{ width: '100%',
   height: '300px', 
-  objectFit: 'cover', border: '2px solid gray'}} alt={prod.title} className="w-100" /></a>
+  objectFit: 'cover', border: '2px solid gray'}} alt={prod.title} className="w-100" /></NavLink>
                   <div className="actions"><NavLink to="https://wa.link/vydag0" target='_blank' className="vs-btn style4">Inquire Now</NavLink></div>
                 </div>
                 <div className="product-body">
                   <div className="product-content">
-                    <h3 className="product-title"><a className="text-inherit" href="shop-details.html">{prod.title}</a></h3>
-                    <div className="product-category"><a href="shop.html">{prod.category}</a></div>
+                    <h3 className="product-title"><NavLink className="text-inherit" to="/all/product" style={{textAlign: 'left'}}>{prod.title}</NavLink></h3>
+                    <div className="product-category" style={{textAlign: 'left'}}><a href="shop.html">{prod.category}</a></div>
                   </div>
                 </div>
               </div>

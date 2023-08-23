@@ -46,8 +46,8 @@ const ProductCard = (props) => {
                      </div>
                      <div className="product-body">
                        <div className="product-content">
-                         <h3 className="product-title"><a className="text-inherit" href="shop-details.html">{prod.title}</a></h3>
-                         <div className="product-category"><NavLink to="/all/product">{prod.category}</NavLink></div>
+                         <h3 className="product-title" style={{textAlign: 'left'}}><NavLink className="text-inherit" to="/all/product">{prod.title}</NavLink></h3>
+                         <div className="product-category" style={{textAlign: 'left'}}><NavLink to="/all/product">{prod.category}</NavLink></div>
                        </div>
                      </div>
                    </div>
