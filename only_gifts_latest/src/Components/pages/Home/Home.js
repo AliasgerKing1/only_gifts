@@ -211,7 +211,7 @@ Bldg No 47, Sharq - Kuwait</span>
               {ProductImages ?.map((prod, index) => (
               <div className="col-xl-3" key={index}>
               <div className="vs-product product-style1">
-                <div className="product-img"><a href="shop-details.html"><img src={prod.image} style={{ width: '100%',
+                <div className="product-img"><a href="shop-details.html"><img src={prod} style={{ width: '100%',
   height: '300px', 
   objectFit: 'cover'}} alt="product" className="w-100" /></a>
                   <div className="actions"><NavLink to="https://wa.link/vydag0" target='_blank' className="vs-btn style4">Inquire Now</NavLink></div>
