@@ -185,8 +185,8 @@ Bldg No 47, Sharq - Kuwait</span>
                         <nav className="main-menu menu-style1 d-none d-lg-block">
                           <ul>
                             <li><NavLink to="/">Home</NavLink></li>
-                            <li><a href="#products">Our Products</a></li>
-                            <li><a href="#clients">Our Clients</a></li>
+                            <li><NavLink to="/all/product">Our Products</NavLink></li>
+                            <li><NavLink to="/">Our Clients</NavLink></li>
                             <li><NavLink to="/about">About Us</NavLink></li>
                           </ul>
                         </nav>

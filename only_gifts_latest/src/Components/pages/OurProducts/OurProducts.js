@@ -148,14 +148,14 @@ Bldg No 47, Sharq - Kuwait</span>
                   <div className="container">
                     <div className="row justify-content-between align-items-center gx-60">
                       <div className="col">
-                        <div className="header-logo"><a href="index.html"><img src="/assets/img/logo.svg" alt="logo" /></a></div>
+                        <div className="header-logo"><a href="index.html"><img src="/assets/img/logo.svg" alt="logo" style={{float: 'left'}} /></a></div>
                       </div>
                       <div className="col-auto">
                         <nav className="main-menu menu-style1 d-none d-lg-block">
                           <ul>
                             <li><NavLink to="/">Home</NavLink></li>
-                            <li><a href="#products">Our Products</a></li>
-                            <li><a href="#clients">Our Clients</a></li>
+                            <li><NavLink to="/all/product">Our Products</NavLink></li>
+                            <li><NavLink to="/">Our Clients</NavLink></li>
                             <li><NavLink to="/about">About Us</NavLink></li>
                           </ul>
                         </nav>
