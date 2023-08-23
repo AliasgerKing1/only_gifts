@@ -180,8 +180,6 @@ Bldg No 47, Sharq - Kuwait</span>
           </div>
         </header>
 
-        <section className="space-top space-extra-bottom">
-    <div className="shape-mockup jump-img d-none d-xl-block" data-left="34%" data-bottom="1%"><img src="/assets/img/shape/leaf-1-6.png" alt="shape" /></div>
     <div className="container">
   
       <div className="row justify-content-between">
@@ -194,7 +192,6 @@ Bldg No 47, Sharq - Kuwait</span>
         </div>
       </div>
     </div>
-  </section>
   {screenWidth < 992 ? (<CategoryCarousel />) : (<CategoryCarousel2 />)}
       
         <section className="space-top" id='products'>
